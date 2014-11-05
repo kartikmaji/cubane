@@ -82,8 +82,7 @@ def newchannel(request):
         return HttpResponseRedirect('login') 
 
 def showchannel(request):
-	if request.user.is_authenticated():
-		
-        return render(request,'welcome.html',{'':})
+    if request.user.is_authenticated():
+        return render(request,'welcome.html',{})
     else:
         return HttpResponseRedirect('login') 
