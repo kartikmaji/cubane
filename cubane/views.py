@@ -81,8 +81,23 @@ def newchannel(request):
     else:
         return HttpResponseRedirect('login') 
 
-def showchannel(request):
+def showchannel(request,channel_id):
     if request.user.is_authenticated():
-        return render(request,'welcome.html',{})
+        try:
+            channel = Channels.objects.get(pk=channel_id)
+        except Channels.DoesNotExist:
+            raise Http404
+        return render(request,'channel.html',{'channel':channel})
+    else:
+        return HttpResponseRedirect('login') 
+
+def joinchannel(request,channel_id):
+    if request.user.is_authenticated():
+        try:
+            channel = Channels.objects.get(pk=channel_id)
+            channel.user.add(request.user)
+        except Channels.DoesNotExist:
+            raise Http404
+        return render(request,'channel.html',{'channel':channel})
     else:
         return HttpResponseRedirect('login') 

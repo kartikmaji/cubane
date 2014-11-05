@@ -27,7 +27,7 @@
  </p>
  	<a href="/newchannel">Create Channel</a>
  	{% for channel in channels%}
- 		<a href="/showchannel">
+ 		<a href="/{{ channel.id }}">
  			{{channel.name}}
  		</a>
  		
