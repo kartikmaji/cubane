@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
 from django.contrib.auth import login,authenticate
 from django.template import RequestContext
+from MyUser.forms import SignupForm
 def home(request):
     if not request.user.is_authenticated():
         return render(request,'index.html',{})
@@ -55,7 +56,7 @@ def user_login(request):
             else:
                 return HttpResponse("Invalid login")
         else:	
-            return render_to_response("login.html",{},context)
+            return render_to_response("welcome.html",{},context)
     else:
         return HttpResponseRedirect('/')
 	#return HttpResponse("Login is here")
