@@ -91,4 +91,5 @@ if DEBUG:
     STATICFILES_DIRS=(
         os.path.join(BASE_DIR,"static","static"),
         )
-#AUTH_USER_MODEL = 'userprofile.MyUser'
+
+AUTH_USER_MODEL = 'MyUser.MyUser'

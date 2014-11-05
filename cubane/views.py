@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
+from django.contrib.auth import login,authenticate
+from django.template import RequestContext
 def home(request):
-    return render(request,'index.html',{})
+    if not request.user.is_authenticated():
+        return render(request,'index.html',{})
+    else:
+        return render(request,'welcome.html',{})
 
 def signup(request):
     if not request.user.is_authenticated():
@@ -33,5 +38,24 @@ def signup(request):
     else:
         return HttpResponseRedirect('/')    
 
-def login(request):
-	return HttpResponse("Login is here")
+def user_login(request):
+    if not request.user.is_authenticated():
+        context = RequestContext(request)
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    authenticate()
+                    login(request,user)
+                    return HttpResponseRedirect('/')
+                else:
+                    return HttpResponse("Your account is disabled")
+            else:
+                return HttpResponse("Invalid login")
+        else:	
+            return render_to_response("login.html",{},context)
+    else:
+        return HttpResponseRedirect('/')
+	#return HttpResponse("Login is here")

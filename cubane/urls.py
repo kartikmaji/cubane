@@ -7,8 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'cubane.views.home', name='home'),
-    url(r'^/$', 'cubane.views.signup', name='signup'),
-    url(r'^login$', 'cubane.views.login', name='login'),
+    #url(r'^/$', 'cubane.views.signup', name='signup'),
+    url(r'^login', 'cubane.views.user_login', name='user_login'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
