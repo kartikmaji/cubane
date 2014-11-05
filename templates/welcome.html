@@ -4,7 +4,7 @@
 <title>i Crowd</title>
 
 <body>
-<table height="100%" width="100%">
+<!-- <table height="100%" width="100%">
 <tr>
 <center>
 <td height="100%" background="static/HostelButton.jpg" style="background-size: cover; height:100%; width:25%">
@@ -21,6 +21,17 @@
 </td>
 </tr>
 </table>
+ -->
+ <p>
+ 	{{user.get_full_name}}
+ </p>
+ 	<a href="/newchannel">Create Channel</a>
+ 	{% for channel in channels%}
+ 		<a href="/showchannel">
+ 			{{channel.name}}
+ 		</a>
+ 		
+ 	{% endfor %}
 </body>
 </head>
 </html>

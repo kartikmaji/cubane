@@ -87,13 +87,17 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-class Message(models.Model):
-	user=models.ForeignKey(MyUser)
-	message=models.CharField(max_length=140)
-	time=models.DateTimeField(auto_now_add=True)
-	def __unicode__(self):
-		return self.message[0,10]
+# class Message(models.Model):
+# 	user=models.ForeignKey(MyUser)
+# 	message=models.CharField(max_length=140)
+# 	time=models.DateTimeField(auto_now_add=True)
+# 	def __unicode__(self):
+# 		return self.message[0,10]
 
-class Channel(models.Model):
-	name = models.CharField(max_length=32)
-	messages=models.ForeignKey(Message)
+class Channels(models.Model):
+	name = models.CharField(max_length=15)
+	user=models.ManyToManyField(MyUser, related_name='targets')
+	owner=models.ForeignKey(MyUser,related_name='head')
+	def __unicode__(self):
+		return self.name
+	#messages=models.ForeignKey(Message)

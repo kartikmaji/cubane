@@ -1,4 +1,4 @@
-from .models import MyUser
+from .models import MyUser,Channels
 from django import forms
 
 class LoginForm(forms.ModelForm):        
@@ -16,3 +16,8 @@ class SignupForm(forms.ModelForm):
         widgets = {
              'password': forms.PasswordInput(),
         }
+
+class NewChannelForm(forms.ModelForm):
+	class Meta:
+		model=Channels
+		fields=('name',)

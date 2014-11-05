@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r'^$', 'cubane.views.home', name='home'),
     url(r'^signup', 'cubane.views.signup', name='signup'),
     url(r'^login', 'cubane.views.user_login', name='user_login'),
+    url(r'^newchannel', 'cubane.views.newchannel', name='newchannel'),
+    url(r'^showchannel', 'cubane.views.showchannel', name='showchannel'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

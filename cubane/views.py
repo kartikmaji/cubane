@@ -1,15 +1,17 @@
 from django.shortcuts import render,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
-from MyUser.models import MyUser
+from MyUser.models import MyUser,Channels
 from django.contrib.auth import login,authenticate
 from django.template import RequestContext
-from MyUser.forms import SignupForm
+from MyUser.forms import SignupForm,NewChannelForm
 def home(request):
     if not request.user.is_authenticated():
         return render(request,'index.html',{})
     else:
-        return render(request,'welcome.html',{})
+    	user=request.user
+    	channels = Channels.objects.order_by('name')
+        return render(request,'welcome.html',{'user':user,'channels':channels})
 
 def signup(request):
     if not request.user.is_authenticated():
@@ -61,3 +63,27 @@ def user_login(request):
     else:
         return HttpResponseRedirect('/')
 	#return HttpResponse("Login is here")
+
+def newchannel(request):
+    if request.user.is_authenticated():
+        if request.method=="POST":
+            form= NewChannelForm(request.POST)
+            if form.is_valid():
+                owner=request.user
+                name=form.cleaned_data['name']
+                #message=form.cleaned_data['message']
+                newchannel=Channels(name=name,owner=owner)
+                newchannel.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = NewChannelForm()
+        return render(request,'addchannel.html',{'form':form})
+    else:
+        return HttpResponseRedirect('login') 
+
+def showchannel(request):
+	if request.user.is_authenticated():
+		
+        return render(request,'welcome.html',{'':})
+    else:
+        return HttpResponseRedirect('login') 
