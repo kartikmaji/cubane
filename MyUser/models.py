@@ -6,7 +6,7 @@ from simple_email_confirmation import SimpleEmailConfirmationUserMixin
 from django import forms
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email,firstname,lastname,mobile,date_of_birth,password=None):
+    def create_user(self, email,firstname,lastname,mobile,password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -18,7 +18,6 @@ class MyUserManager(BaseUserManager):
             firstname=firstname,
             lastname=lastname,
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
             mobile=mobile,
         )
 
@@ -31,7 +30,6 @@ class MyUserManager(BaseUserManager):
             firstname=firstname,
             lastname=lastname,
             mobile=mobile,
-            date_of_birth=date_of_birth,
             password=password,
         )
         user.post='presdient'
@@ -57,7 +55,7 @@ class MyUser(SimpleEmailConfirmationUserMixin,AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['firstname','lastname','mobile','post','date_of_birth']
+    REQUIRED_FIELDS = ['firstname','lastname','mobile','image']
 
     def get_full_name(self):
         # The user is identified by their email address
