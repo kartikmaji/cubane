@@ -195,7 +195,6 @@ a.button:hover {
 <body>
 <div class="testbox">
   <h1>Registration</h1>
-  <form action="/">
   <!--
   <input type="text" name="name" id="name" placeholder="Email" required/>
   <input type="text" name="name" id="name" placeholder="Name" required/>
@@ -203,8 +202,10 @@ a.button:hover {
   <input type="password" name="name" id="name" placeholder="Password" required/>
   <input type="password" name="name" id="name" placeholder="Password" required/>
    <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>-->
-  <a href="#" class="button">Register</a>
-  </form>
+   <form method='POST' action=''>{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit">
+     </form>
 </div>
 </body>
 </head>

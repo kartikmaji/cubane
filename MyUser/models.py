@@ -87,7 +87,6 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-
 class Message(models.Model):
 	user=models.ForeignKey(MyUser)
 	message=models.CharField(max_length=140)
