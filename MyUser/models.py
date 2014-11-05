@@ -86,3 +86,15 @@ class MyUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class Message(models.Model):
+	user=models.ForeignKey(MyUser)
+	message=models.CharField(max_length=140)
+	time=models.DateTimeField(auto_now_add=True)
+	def __unicode__(self):
+		return self.message[0,10]
+
+class Channel(models.Model):
+	name = models.CharField(max_length=32)
+	messages=models.ForeignKey(Message)

@@ -32,10 +32,10 @@ def signup(request):
                 else:
                     return HttpResponse("Your password don't match please try again")
             else:
-                return render(request,'adduser.html',{'form':form})
+                return render(request,'index.html',{'form':form})
         else:
             form = SignupForm()
-        return render(request,'adduser.html',{'form':form})
+        return render(request,'index.html',{'form':form})
     else:
         return HttpResponseRedirect('/')    
 
