@@ -1,6 +1,7 @@
 from django.shortcuts import render,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
+from MyUser.models import MyUser
 from django.contrib.auth import login,authenticate
 from django.template import RequestContext
 from MyUser.forms import SignupForm
@@ -24,7 +25,7 @@ def signup(request):
                     lastname=request.POST['lastname']
                     username = request.POST['username']
                     mobile=request.POST['mobile']
-                    new_user = MyUser.objects.create_user(email,firstname,lastname,mobile,date_of_birth,password)
+                    new_user = MyUser.objects.create_user(email,firstname,lastname,username,mobile,password)
                     MyUser.backend='django.contrib.auth.backends.ModelBackend'
                     authenticate()
                     login(request,new_user)

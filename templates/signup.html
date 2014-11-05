@@ -203,7 +203,14 @@ a.button:hover {
   <input type="password" name="name" id="name" placeholder="Password" required/>
    <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>-->
    <form method='POST' action=''>{% csrf_token %}
-        {{form.as_p}}
+        {% for field in form %}
+              <div>
+                {{field.label_tag}}
+              </div>
+                <div>
+                    {{field}}
+                </div>
+                {% endfor %}
         <input type="submit">
      </form>
 </div>
