@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
-from simple_email_confirmation import SimpleEmailConfirmationUserMixin
-from django import forms
+#from simple_email_confirmation import SimpleEmailConfirmationUserMixin
+
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email,firstname,lastname,mobile,password=None):
@@ -25,7 +25,7 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,email,firstname,lastname,mobile,post,date_of_birth,password):
+    def create_superuser(self,email,firstname,lastname,mobile,password):
         user = self.create_user(email,
             firstname=firstname,
             lastname=lastname,
@@ -38,7 +38,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(SimpleEmailConfirmationUserMixin,AbstractBaseUser):
+class MyUser(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -47,7 +47,7 @@ class MyUser(SimpleEmailConfirmationUserMixin,AbstractBaseUser):
     firstname=models.CharField(max_length=32)
     lastname=models.CharField(max_length=32)
     mobile=models.IntegerField(max_length=10)
-    image=models.ImageField(upload_to = 'media',null=True,blank=True)
+    #image=models.ImageField(upload_to = 'media',null=True,blank=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
