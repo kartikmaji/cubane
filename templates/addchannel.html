@@ -2,13 +2,93 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <style>
+  .testbox {
+  margin: auto;
+  width: 300px; 
+  height: 200px; 
+  -webkit-border-radius: 8px/7px; 
+  -moz-border-radius: 8px/7px; 
+  border-radius: 8px/7px; 
+  background-color: #bfbfbf; 
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  border: solid 1px #cbc9c9;
+  z-index: 2;
+  margin-top: 250px;
+}
+.body{
+			position: absolute;
+			top: -20px;
+			left: -20px;
+			right: -40px;
+			bottom: -40px;
+			width: auto;
+			height: auto;
+			background-image: url(/static/IIIT.jpg);
+			background-size: cover;
+			-webkit-filter: blur(5px);
+			z-index: 0;
+			}
+.input{
+  width: 200px; 
+  height: 39px; 
+  -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
+  -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px; 
+  border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
+  background-color: #ebebeb; 
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0); 
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0); 
+  box-shadow: 1px 2px 5px rgba(0,0,0); 
+  border: solid 1px #ebebeb;
+  margin-left: 50px;
+  margin-top: 0px; 
+  padding-left: 0px;
+}
+
+.signup
+			{
+			position: absolute;
+			padding: 10px;
+			width: 250px;
+			height: 35px;
+			background: #fff;
+			border: 1px solid #fff;
+			cursor: pointer;
+			border-radius: 2px;
+			color: #a18d6c;
+			font-family: 'Exo', sans-serif;
+			font-size: 16px;
+			font-weight: 400;
+			padding: 6px;
+			margin-top: 10px;
+			text-align: center;
+			margin-left: 25px;
+			}
+			.signup:hover
+			{
+				opacity: 0.8;
+			}
+			.signup:active
+			{
+				opacity: 0.6;
+			}
+			.signup:focus
+			{
+			outline: none;
+			}
+  </style>
   <title>i Crowd</title>
 </head>
-<body>
-	
-<form method='POST' action=''>{% csrf_token %}
-				{{form.as_p}}
-				<input type="submit">
-			</form>
+
+<body style="background-image: url(/static/PeopleText.jpg); background-size: cover;">
+<div class="testbox">
+	<center><h1><font color="White">Add Channel</font></h1></center>
+		<form method='POST' action=''>{% csrf_token %}
+			<div class="input">{{form.as_p}}</div>
+			<input type="submit" class="signup">
+		</form>
+</div>
 </body>
 </html>

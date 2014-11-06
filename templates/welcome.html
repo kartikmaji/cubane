@@ -2,36 +2,26 @@
 <html>
 <head>
 <title>i Crowd</title>
-
 <body>
-<!-- <table height="100%" width="100%">
-<tr>
-<center>
-<td height="100%" background="static/HostelButton.jpg" style="background-size: cover; height:100%; width:25%">
-   <a href="index.html">Hostel</a>
-</td>
-<td background="static/SCButton.jpg" style="background-size: cover; height:100%; width:25%">
-    <a href="index.html">Student Centre</a>
-</td>
-<td background="static/AcadButton.jpg" style="background-size: cover; height:100%; width:25%">
-   <a href="index.html"><font size="20px">Academic Block</a>
-</td>
-<td background="static/FacultyBuilding.jpg" style="background-size: cover; height:100%; width:25%">
-   <a href="index.html">Faculty Building</a>
-</td>
-</tr>
-</table>
- -->
- <p>
+<div style="float:left; border:double">
+ <div>
+ 	Welcome 
  	{{user.get_full_name}}
- </p>
- 	<a href="/newchannel">Create Channel</a>
+ </div>
+ <div style="border:double">
+ 	Channels<br>
  	{% for channel in channels%}
- 		<a href="/{{ channel.id }}">
- 			{{channel.name}}
- 		</a>
- 		
+ 		<a href="/{{ channel.id }}">{{channel.name}}<br></a>	
  	{% endfor %}
+ </div>
+ <div>
+ 	<a href="/newchannel">Create Channel</a>
+ </div>
+</div>
+<div style="float:right;border:double">
+</div>
+<div style="margin-left:200px; border:double">
+</div>
 </body>
 </head>
 </html>
