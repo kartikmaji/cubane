@@ -1,8 +1,23 @@
-{{channel.name}}
+<!doctype html>
+<html>
+	<style type="text/css">
+		.channelname{
+			margin-left: 20%
+			font-size:50px;
+			font-weight: 400;
+			text-align: center;
+		}
+
+	</style>
+
+<body>
+
+<div  class="channelname">
+	{{channel.name}}
+
+	<a href="/{{ channel.id }}/join">Join</a>
 
 
-<a href="/{{ channel.id }}/join">Join</a>
-<div>
 	<p>Users in this channel</p>
 	<ul>
 	{% if channel.user.all %}	
@@ -15,9 +30,7 @@
     	<p>No users are available.</p>
 	{% endif %}
 	</ul>
-</div>
 
-<div>
 	<p>Messages</p>
 	<ul>
 		{% if channel.messages.all %}	
@@ -30,6 +43,10 @@
 		{% endif %}
 	</ul>
 
-</div>
+
 
 <a href="/{{channel.id}}/post">Add post</a>
+</div>
+
+</body>
+</html>
