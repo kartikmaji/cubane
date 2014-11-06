@@ -22,39 +22,48 @@
 			z-index: 2;
 			font-family: comic sans-serif;
   			font-weight: 500;
+  			font-size: 70px;
   			line-height: 1.1;
-  			color: #white;
+  			color: white;
 			}
-			.header div{
-			float: left;
-			color: #000;
-			font-family: 'Exo', sans-serif;
-			font-size: 35px;
-			font-weight: 200;
+			.header1{
+			position: absolute;
+			top: calc(55% - 35px);
+			left: calc(50% - 300px);
+			z-index: 2;
+			font-family: comic sans-serif;
+  			font-weight: 500;
+  			font-size: 35px;
+  			line-height: 1.1;
+  			color: white;
 			}
-			{
-}
+			.landing{
+			position: absolute;
+			top: calc(80% - 35px);
+			left: calc(40% - 180px);
+			z-index: 2;
+			font-family: comic sans-serif;
+  			font-weight: 500;
+  			font-size: 35px;
+  			line-height: 1.1;
+  			color: white;
+			}
+			
 </style>
-<body>
+<body link="white">
 <div class="body"></div>
-<div style="float:left; border:double">
- <div class="header">
- 	Welcome 
- 	{{user.get_full_name}}
- </div>
- <div style="border:double">
- 	Channels<br>
- 	{% for channel in channels%}
- 		<a href="/{{ channel.id }}">{{channel.name}}<br></a>	
- 	{% endfor %}
- </div>
- <div>
- 	<a href="/newchannel">Create Channel</a>
- </div>
-</div>
-<div style="float:right;border:double">
-</div>
-<div style="margin-left:200px; border:double">
+ 	<div class="header">
+	 	i Crowd 
+ 	</div>
+ 	<div class="header1">
+ 		Welcome to IIIT Delhi's discussion forum !
+	</div>
+ 	<div class="landing">
+ 		Choose an existing Channel Or <a href="/newchannel"><font color="white">Create One</font></a> <br>
+ 		{% for channel in channels%}
+ 				<a href="/{{ channel.id }}"><font color="white">{{channel.name}}</font><br></a>	
+ 		{% endfor %}
+ 	</div>
 </div>
 </body>
 </head>
