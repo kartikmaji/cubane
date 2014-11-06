@@ -92,7 +92,7 @@ class Message(models.Model):
 	message=models.CharField(max_length=140)
 	time=models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
-		return self.message[0,10]
+		return self.message
 
 class Channels(models.Model):
     messages = models.ManyToManyField(Message)

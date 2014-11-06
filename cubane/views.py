@@ -1,7 +1,7 @@
 from django.shortcuts import render,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 # Create your views here.
-from MyUser.models import MyUser,Channels
+from MyUser.models import MyUser,Channels,Message
 from django.contrib.auth import login,authenticate
 from django.template import RequestContext
 from MyUser.forms import SignupForm,NewChannelForm,PostForm
@@ -116,13 +116,15 @@ def postmessage(request,channel_id):
 	                    form= PostForm(request.POST)
 	                    if form.is_valid():
 	                        user=request.user
-	                        topic=form.cleaned_data['topic']
 	                        message=form.cleaned_data['message']
-	                        newmessage=notice(topic=topic,message=message,user=user)
+	                        newmessage=Message(message=message,user=user)
 	                        newmessage.save()
+	                        channel.messages.add(newmessage)
 	                        return HttpResponseRedirect('/')
 	                else:
 	                    form = PostForm()
+	        else:
+	        	HttpResponse("User not found")
         return render(request,'addpost.html',{'form':form})
     else:
         return HttpResponseRedirect('/login')
