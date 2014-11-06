@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from MyUser.models import MyUser,Channels
 from django.contrib.auth import login,authenticate
 from django.template import RequestContext
-from MyUser.forms import SignupForm,NewChannelForm
+from MyUser.forms import SignupForm,NewChannelForm,PostForm
 def home(request):
     if not request.user.is_authenticated():
         return render(request,'index.html',{})
@@ -91,13 +91,38 @@ def showchannel(request,channel_id):
     else:
         return HttpResponseRedirect('login') 
 
+
 def joinchannel(request,channel_id):
     if request.user.is_authenticated():
         try:
             channel = Channels.objects.get(pk=channel_id)
             channel.user.add(request.user)
+            pk=channel_id
         except Channels.DoesNotExist:
             raise Http404
-        return render(request,'channel.html',{'channel':channel})
+        return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('login') 
+
+def postmessage(request,channel_id):
+    if request.user.is_authenticated():
+        channel = Channels.objects.get(pk=channel_id)
+        check=0
+        for users in channel.user.all():
+            if users == request.user:
+                check=1
+                if check==1:
+	                if request.method=="POST":
+	                    form= PostForm(request.POST)
+	                    if form.is_valid():
+	                        user=request.user
+	                        topic=form.cleaned_data['topic']
+	                        message=form.cleaned_data['message']
+	                        newmessage=notice(topic=topic,message=message,user=user)
+	                        newmessage.save()
+	                        return HttpResponseRedirect('/')
+	                else:
+	                    form = PostForm()
+        return render(request,'addpost.html',{'form':form})
+    else:
+        return HttpResponseRedirect('/login')

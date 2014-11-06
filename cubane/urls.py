@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^newchannel', 'cubane.views.newchannel', name='newchannel'),
     url(r'^(?P<channel_id>[0-9]+)/$', 'cubane.views.showchannel', name='showchannel'),
     url(r'^(?P<channel_id>[0-9]+)/join$', 'cubane.views.joinchannel', name='joinchannel'),
+    url(r'^(?P<channel_id>[0-9]+)/post$', 'cubane.views.postmessage', name='postmessage'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

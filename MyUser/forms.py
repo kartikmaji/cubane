@@ -1,4 +1,4 @@
-from .models import MyUser,Channels
+from .models import MyUser,Channels,Message
 from django import forms
 
 class LoginForm(forms.ModelForm):        
@@ -21,3 +21,8 @@ class NewChannelForm(forms.ModelForm):
 	class Meta:
 		model=Channels
 		fields=('name',)
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model=Message
+        fields=('message',)
