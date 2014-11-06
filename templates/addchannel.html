@@ -59,9 +59,9 @@
 }
 .login{
 			position: absolute;
-			top: calc(50% - 75px);
-			left: calc(50% - 120px);
-			height: 150px;
+			top: calc(50% - 55px);
+			left: calc(50% - 80px);
+			height: 20px;
 			width: 350px;
 			padding: 10px;
 			z-index: 2;
@@ -75,7 +75,7 @@
 			height: 35px;
 			top: calc(55% - 35px);
 			left: calc(50% - 150px);
-			background: #efefef;
+			background: #cfcfcf;
 			border: 1px solid #fff;
 			cursor: pointer;
 			border-radius: 2px;
@@ -88,18 +88,6 @@
 			text-align: center;
 			margin-left: 25px;
 			}
-			.signup:hover
-			{
-				opacity: 0.8;
-			}
-			.signup:active
-			{
-				opacity: 0.6;
-			}
-			.signup:focus
-			{
-			outline: none;
-			}
   </style>
   <title>i Crowd</title>
 </head>
@@ -110,7 +98,11 @@
 			<div><b>Add Channel<b></div>
 		</div>
 		<form method='POST' action=''>{% csrf_token %}
-			<div class="login">{{form.as_p}}</div>
+			<div class="login">
+			{% for field in form%}
+			{{field}}
+			{% endfor %}
+			</div>
 			<input type="submit" class="signup">
 		</form>
 </div>

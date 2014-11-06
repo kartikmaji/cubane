@@ -2,9 +2,43 @@
 <html>
 <head>
 <title>i Crowd</title>
+ <style>
+.body{
+			position: absolute;
+			top: -20px;
+			left: -20px;
+			right: -40px;
+			bottom: -40px;
+			width: auto;
+			height: auto;
+			background-image: url(/static/intro-bg.jpg);
+			background-size: cover;
+			z-index: 0;
+			}
+			.header{
+			position: absolute;
+			top: calc(40% - 35px);
+			left: calc(50% - 120px);
+			z-index: 2;
+			font-family: comic sans-serif;
+  			font-weight: 500;
+  			line-height: 1.1;
+  			color: #white;
+			}
+			.header div{
+			float: left;
+			color: #000;
+			font-family: 'Exo', sans-serif;
+			font-size: 35px;
+			font-weight: 200;
+			}
+			{
+}
+</style>
 <body>
+<div class="body"></div>
 <div style="float:left; border:double">
- <div>
+ <div class="header">
  	Welcome 
  	{{user.get_full_name}}
  </div>
