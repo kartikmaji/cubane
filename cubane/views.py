@@ -1,5 +1,5 @@
 from django.shortcuts import render,render_to_response
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect,HttpResponse,Http404
 # Create your views here.
 from MyUser.models import MyUser,Channels,Message
 from django.contrib.auth import login,authenticate
@@ -79,7 +79,7 @@ def newchannel(request):
             form = NewChannelForm()
         return render(request,'addchannel.html',{'form':form})
     else:
-        return HttpResponseRedirect('login') 
+        return HttpResponseRedirect('/') 
 
 def showchannel(request,channel_id):
     if request.user.is_authenticated():
@@ -89,7 +89,7 @@ def showchannel(request,channel_id):
             raise Http404
         return render(request,'channel.html',{'channel':channel})
     else:
-        return HttpResponseRedirect('login') 
+        return HttpResponseRedirect('/') 
 
 
 def joinchannel(request,channel_id):
@@ -102,7 +102,7 @@ def joinchannel(request,channel_id):
             raise Http404
         return HttpResponseRedirect('/')
     else:
-        return HttpResponseRedirect('login') 
+        return HttpResponseRedirect('/') 
 
 def postmessage(request,channel_id):
     if request.user.is_authenticated():
@@ -127,4 +127,4 @@ def postmessage(request,channel_id):
 	        	HttpResponse("User not found")
         return render(request,'addpost.html',{'form':form})
     else:
-        return HttpResponseRedirect('/login')
+        return HttpResponseRedirect('/')

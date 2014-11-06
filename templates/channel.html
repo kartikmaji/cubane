@@ -2,12 +2,34 @@
 
 
 <a href="/{{ channel.id }}/join">Join</a>
-<ul>
-{{channel.user.all}}
-</ul>
+<div>
+	<p>Users in this channel</p>
+	<ul>
+	{% if channel.user.all %}	
+		{% for users in channel.user.all %}
+			{{users.username}}
 
-<ul>
-{{channel.messages.all}}
-</ul>
+		{% endfor %}
+
+	{% else %}
+    	<p>No users are available.</p>
+	{% endif %}
+	</ul>
+</div>
+
+<div>
+	<p>Messages</p>
+	<ul>
+		{% if channel.messages.all %}	
+		{% for msg in channel.messages.all %}
+			<strong>{{msg.message}}</strong> &nbsp;&nbsp;&nbsp; at {{msg.time}}<br>
+		{% endfor %}
+
+		{% else %}
+    		<p>No messages are posted.</p>
+		{% endif %}
+	</ul>
+
+</div>
 
 <a href="/{{channel.id}}/post">Add post</a>
