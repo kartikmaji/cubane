@@ -3,21 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <style>
-  .testbox {
-  margin: auto;
-  width: 300px; 
-  height: 200px; 
-  -webkit-border-radius: 8px/7px; 
-  -moz-border-radius: 8px/7px; 
-  border-radius: 8px/7px; 
-  background-color: #bfbfbf; 
-  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  border: solid 1px #cbc9c9;
-  z-index: 2;
-  margin-top: 250px;
-}
 .body{
 			position: absolute;
 			top: -20px;
@@ -26,10 +11,36 @@
 			bottom: -40px;
 			width: auto;
 			height: auto;
-			background-image: url(/static/IIIT.jpg);
+			background-image: url(/static/PeopleText.jpg);
 			background-size: cover;
 			-webkit-filter: blur(5px);
 			z-index: 0;
+			}
+
+		.grad{
+			position: absolute;
+			top: -20px;
+			left: -20px;
+			right: -40px;
+			bottom: -40px;
+			width: auto;
+			height: auto;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+			z-index: 1;
+			opacity: 0.7;
+			}
+			.header{
+			position: absolute;
+			top: calc(40% - 35px);
+			left: calc(50% - 120px);
+			z-index: 2;
+			}
+			.header div{
+			float: left;
+			color: #000;
+			font-family: 'Exo', sans-serif;
+			font-size: 35px;
+			font-weight: 200;
 			}
 .input{
   width: 200px; 
@@ -46,6 +57,15 @@
   margin-top: 0px; 
   padding-left: 0px;
 }
+.login{
+			position: absolute;
+			top: calc(50% - 75px);
+			left: calc(50% - 120px);
+			height: 150px;
+			width: 350px;
+			padding: 10px;
+			z-index: 2;
+			}
 
 .signup
 			{
@@ -53,7 +73,9 @@
 			padding: 10px;
 			width: 250px;
 			height: 35px;
-			background: #fff;
+			top: calc(55% - 35px);
+			left: calc(50% - 150px);
+			background: #efefef;
 			border: 1px solid #fff;
 			cursor: pointer;
 			border-radius: 2px;
@@ -82,11 +104,13 @@
   <title>i Crowd</title>
 </head>
 
-<body style="background-image: url(/static/PeopleText.jpg); background-size: cover;">
-<div class="testbox">
-	<center><h1><font color="White">Add Channel</font></h1></center>
+<body>
+<div class="body"></div>
+<div class="header">
+			<div><b>Add Channel<b></div>
+		</div>
 		<form method='POST' action=''>{% csrf_token %}
-			<div class="input">{{form.as_p}}</div>
+			<div class="login">{{form.as_p}}</div>
 			<input type="submit" class="signup">
 		</form>
 </div>
